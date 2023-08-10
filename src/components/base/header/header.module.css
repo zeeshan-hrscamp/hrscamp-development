@@ -1,0 +1,15 @@
+.wrapper {
+  padding: 10px;
+}
+
+.wrapper a {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.wrapper a:hover {
+  color: white;
+  background: darkcyan;
+}
