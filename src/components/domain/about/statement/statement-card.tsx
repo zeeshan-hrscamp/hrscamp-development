@@ -2,16 +2,22 @@ import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 const StatementCard = () => {
   const data = useStaticQuery(graphql`
-    query StatementCardQuery {
-      allMdx(filter: { frontmatter: { category: { eq: "statement" } } }) {
+    query StatementsQuery {
+      allMarkdownRemark(
+        filter: {
+          frontmatter: {
+            domain: { eq: "about" }
+            domain_section: { eq: "statement" }
+          }
+        }
+        sort: { frontmatter: { no: ASC } }
+      ) {
         nodes {
-          excerpt
+          html
           frontmatter {
-            title
+            section_title
           }
         }
       }
@@ -20,12 +26,10 @@ const StatementCard = () => {
 
   return (
     <>
-      {data.allMdx.nodes.map((node) => (
+      {data.allMarkdownRemark.nodes.map((statement) => (
         <div>
-            <h4>{node.frontmatter.title}</h4>
-          <div>
-            <p>{node.excerpt}</p>
-          </div>
+          <h1>{statement.frontmatter.section_title}</h1>
+          <div dangerouslySetInnerHTML={{ __html: statement.html }} />
         </div>
       ))}
     </>

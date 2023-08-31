@@ -7,23 +7,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ClientTestimonialCard = () => {
   const data = useStaticQuery(graphql`
     query ClientTestimonialCardQuery {
-      allMdx(
+      allMarkdownRemark(
         filter: {
           frontmatter: {
             domain: { eq: "client" }
-            sub_domain: { eq: "testimonial" }
+            domain_section: { eq: "client-testimonial" }
           }
         }
+        sort: { frontmatter: { no: ASC } }
       ) {
         nodes {
-          excerpt
+          html
           frontmatter {
             company_name
-            company_logo {
-              childImageSharp {
-                gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
-              }
-            }
+            #company_logo {
+            #  childImageSharp {
+            #    gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
+            #  }
+            #}
             person_name
             person_role
             person_email
@@ -41,7 +42,7 @@ const ClientTestimonialCard = () => {
 
   return (
     <>
-      {data.allMdx.nodes.map((node) => (
+      {data.allMarkdownRemark.nodes.map((node) => (
         <div>
           <p></p>
           {/* <GatsbyImage
@@ -49,16 +50,16 @@ const ClientTestimonialCard = () => {
             alt={node.frontmatter.company_name}
           /> */}
           <p>{node.frontmatter.person_name}</p>
-          <p>{node.frontmatter.person_role}, {node.frontmatter.company_name}</p>
+          <p>
+            {node.frontmatter.person_role}, {node.frontmatter.company_name}
+          </p>
           <p>{node.frontmatter.person_email}</p>
           <p>{node.frontmatter.person_lindedin_address}</p>
           <GatsbyImage
             image={getImage(node.frontmatter.person_image)}
             alt={node.frontmatter.person_name}
           />
-          <div>
-            <p>{node.excerpt}</p>
-          </div>
+          <div dangerouslySetInnerHTML={{ __html: node.html }} />
         </div>
       ))}
     </>

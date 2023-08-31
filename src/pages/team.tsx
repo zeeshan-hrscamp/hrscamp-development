@@ -1,8 +1,8 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
-import Seo from "../components/base/seo/seo";
 import Layout from "../components/base/layout";
 import Team from "../components/domain/team";
+import Seo from "../components/base/seo/seo";
 
 const TeamPage = () => {
   return (

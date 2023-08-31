@@ -7,10 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const CandidateFaqCard = () => {
   const data = useStaticQuery(graphql`
     query CandidateFaqCardQuery {
-      allMdx(
-        filter: {
-          frontmatter: { domain: { eq: "candidate" }, sub_domain: { eq: "faq" } }
+      allMarkdownRemark(
+        filter: { 
+          frontmatter: { 
+            domain: { eq: "faq" }
+            domain_section: { eq: "candidate" } 
+          } 
         }
+        sort: { frontmatter: { no: ASC } }
       ) {
         nodes {
           frontmatter {
@@ -24,7 +28,7 @@ const CandidateFaqCard = () => {
 
   return (
     <>
-      {data.allMdx.nodes.map((node) => (
+      {data.allMarkdownRemark.nodes.map((node) => (
         <div>
           <p>
             <b>{node.frontmatter.question}</b>

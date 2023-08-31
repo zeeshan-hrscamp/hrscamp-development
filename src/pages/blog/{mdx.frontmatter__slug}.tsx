@@ -5,6 +5,7 @@ import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 import { container } from "./blog.css";
 import Seo from "../../components/base/seo/seo";
 import Layout from "../../components/base/layout";
+import SocialPost from "../../components/domain/blog/social-post";
 
 export const query = graphql`
   query ($id: String) {
@@ -12,10 +13,8 @@ export const query = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        hero_image_alt
-        hero_image_credit_link
-        hero_image_credit_text
-        hero_image {
+        blog_post_image_alt
+        blog_post_image {
           childImageSharp {
             gatsbyImageData
           }
@@ -27,20 +26,17 @@ export const query = graphql`
 
 const BlogPost = ({ data, children }) => {
   const image: IGatsbyImageData | undefined = getImage(
-    data.mdx.frontmatter.hero_image
+    data.mdx.frontmatter.blog_post_image
   );
 
   return (
     <div className={container}>
       <Layout>
+        <div>
+          <SocialPost />
+        </div>
         <p>{data.mdx.frontmatter.date}</p>
-        <GatsbyImage image={image} alt={data.mdx.frontmatter.hero_image_alt} />
-        <p>
-          Photo Credit:{" "}
-          <a href={data.mdx.frontmatter.hero_image_credit_link}>
-            {data.mdx.frontmatter.hero_image_credit_text}
-          </a>
-        </p>
+        <GatsbyImage image={image} alt={data.mdx.frontmatter.blog_post_image_alt} />
         {children}
       </Layout>
     </div>

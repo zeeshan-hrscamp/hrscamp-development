@@ -4,6 +4,14 @@ import type { HeadFC, PageProps } from "gatsby";
 const ContactForm = () => {
   return (
     <>
+      <p>
+        For More Detail Contact Us: We are committed to helping more and more
+        clients to kickstart successful careers or revolutionize the existing
+        but dead, out-of-control business operations. Success careers begin when
+        you are focused on important things instead of the ones you can
+        delegate. Let’s discuss how we can carry your business responsibilities
+        on our shoulders and take exceptional care of them.
+      </p>
       {/* Card Section */}
       <div className="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         {/* Card */}

@@ -20,9 +20,9 @@ const TechnologyStackCard = () => {
           frontmatter {
             operation
             technology
-            image {
+            technology_image {
               childImageSharp {
-                gatsbyImageData(quality: 90, width: 90, layout: CONSTRAINED)
+                gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
               }
             }
           }
@@ -37,7 +37,7 @@ const TechnologyStackCard = () => {
         <div>
           <h3>{node.frontmatter.technology}</h3>
           <GatsbyImage
-            image={getImage(node.frontmatter.image)}
+            image={getImage(node.frontmatter.technology_image)}
             alt={node.frontmatter.technology}
           />
           <div>

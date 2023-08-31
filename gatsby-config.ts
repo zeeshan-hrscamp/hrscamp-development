@@ -7,11 +7,15 @@ const config: GatsbyConfig = {
   },
   graphqlTypegen: true,
   plugins: [
+    // --- IMAGES ---
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
     // --- SOURCE ---
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `contact`,
+        name: `data`,
         path: `${__dirname}/src/data`,
       },
     },
@@ -22,11 +26,29 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/images`,
       },
     },
-    // --- IMAGES ---
-    `gatsby-plugin-image`,
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
     // --- markdown ---
+    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
+          // {
+          //   resolve: `gatsby-remark-responsive-iframe`,
+          //   options: {
+          //     wrapperStyle: `margin-bottom: 1.0725rem`,
+          //   },
+          // },
+          // `gatsby-remark-prismjs`,
+        ],
+      },
+    },
+    // -------------
     {
       resolve: `gatsby-plugin-mdx`,
       options: {

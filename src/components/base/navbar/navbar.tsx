@@ -40,16 +40,10 @@ const Navbar = () => {
         </Link>
         <Link
           className="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500"
-          to="/process"
-        >
-          Process
-        </Link>
-        <Link
-          className="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500"
           to="/model"
         >
           Model
-        </Link>        
+        </Link>
         <Link
           className="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500"
           to="/blog"

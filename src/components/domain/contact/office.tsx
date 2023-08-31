@@ -12,10 +12,19 @@ import {
 const Office = () => {
   const data = useStaticQuery(graphql`
     query OfficeQuery {
-      allMdx(filter: { frontmatter: { category: { eq: "office" } } }) {
+      allMarkdownRemark(
+        filter: {
+          frontmatter: {
+            domain: { eq: "contact" }
+            domain_section: { eq: "office" }
+          }
+        }
+        sort: { frontmatter: { name: ASC } }
+      ) {
         nodes {
-          excerpt
+          html
           frontmatter {
+            section_title
             name
             address
             city
@@ -24,13 +33,12 @@ const Office = () => {
             area_network_code
             phone
             email
-            image_alt
-            image {
+            office_image {
               childImageSharp {
                 gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
-                # gatsbyImageData
               }
             }
+            office_image_alt
           }
         }
       }
@@ -40,39 +48,40 @@ const Office = () => {
   return (
     <>
       <h2>Offices</h2>
-      {data.allMdx.nodes.map((node) => (
+      {data.allMarkdownRemark.nodes.map((office) => (
         <div>
-          <h4>{node.frontmatter.name}</h4>
+          <h4>{office.frontmatter.name}</h4>
           <GatsbyImage
-            image={getImage(node.frontmatter.image)}
-            alt={node.frontmatter.image_alt}
+            image={getImage(office.frontmatter.office_image)}
+            alt={office.frontmatter.office_image_alt}
           />
+          <div dangerouslySetInnerHTML={{ __html: office.html }} />
+
           <div>
-            <p>{node.excerpt}</p>
-          </div>
-          <div>
-            <FontAwesomeIcon icon={faLocationDot} />: {node.frontmatter.address}
+            <FontAwesomeIcon icon={faLocationDot} />:{" "}
+            {office.frontmatter.address}
           </div>
           <div>
             <p>
-              {node.frontmatter.city}, {node.frontmatter.country}
+              {office.frontmatter.city}, {office.frontmatter.country}
             </p>
           </div>
           <div>
-            {node.frontmatter.phone.length > 0 && (
+            {office.frontmatter.phone?.length > 0 && (
               <p>
                 <FontAwesomeIcon icon={faPhone} />:{" "}
-                {node.frontmatter.country_code}{" "}
-                {node.frontmatter.area_network_code} {node.frontmatter.phone}
+                {office.frontmatter.country_code}{" "}
+                {office.frontmatter.area_network_code}{" "}
+                {office.frontmatter.phone}
               </p>
             )}
           </div>
           <div>
             <p>
-              {node.frontmatter.email.length > 0 && (
+              {office.frontmatter.email?.length > 0 && (
                 <p>
                   <FontAwesomeIcon icon={faEnvelope} />:{" "}
-                  {node.frontmatter.email}
+                  {office.frontmatter.email}
                 </p>
               )}
             </p>

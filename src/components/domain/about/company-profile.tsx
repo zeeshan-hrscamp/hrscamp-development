@@ -2,47 +2,48 @@ import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 const CompanyProfile = () => {
   const data = useStaticQuery(graphql`
     query CompanyProfileQuery {
-      allMdx(
-        filter: {
-          frontmatter: { category: { eq: "about" }, page: { eq: "about" } }
+      markdownRemark(
+        frontmatter: {
+          domain: { eq: "about" }
+          domain_section: { eq: "company-profile" }
         }
       ) {
-        nodes {
-          excerpt
-          frontmatter {
-            title
-            image_name
-            image {
-              childImageSharp {
-                gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
-                # gatsbyImageData
-              }
+        frontmatter {
+          section_title
+          company_profile_image_name
+          company_profile_image {
+            childImageSharp {
+              gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
             }
           }
         }
+        html
       }
     }
   `);
 
+  const { markdownRemark } = data;
+  const { frontmatter, html } = markdownRemark;
+
   return (
     <>
-      {data.allMdx.nodes.map((node) => (
-        <div>
-          <h2>{node.frontmatter.title}</h2>
-          <GatsbyImage
-            image={getImage(node.frontmatter.image)}
-            alt={node.frontmatter.image_name}
-          />
-          <div>
-            <p>{node.excerpt}</p>
+      <div>
+        <h2>{frontmatter.section_title}</h2>
+        <div className="flex flex-row">
+          <div className="basis-1/2">
+            <div dangerouslySetInnerHTML={{ __html: html }} />
+          </div>
+          <div className="basis-1/2">
+            <GatsbyImage
+              image={getImage(frontmatter.company_profile_image)}
+              alt={frontmatter.company_profile_image_name}
+            />
           </div>
         </div>
-      ))}
+      </div>
     </>
   );
 };

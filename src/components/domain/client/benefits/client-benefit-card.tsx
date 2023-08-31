@@ -7,24 +7,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ClientBenefitCard = () => {
   const data = useStaticQuery(graphql`
     query ClientBenefitCardQuery {
-      allMdx(
+      allMarkdownRemark(
         filter: {
           frontmatter: {
             domain: { eq: "client" }
-            sub_domain: { eq: "benefit" }
+            domain_section: { eq: "benefit" }
           }
         }
+        sort: { frontmatter: { no: ASC } }
       ) {
         nodes {
-          excerpt
+          html
           frontmatter {
-            title
-            icon_title
-            icon {
+            section_title
+            benefit_icon {
               childImageSharp {
                 gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
               }
             }
+            benefit_icon_title
           }
         }
       }
@@ -33,17 +34,14 @@ const ClientBenefitCard = () => {
 
   return (
     <>
-      {/* <h3>Client Benefit Card</h3> */}
-      {data.allMdx.nodes.map((node) => (
+      {data.allMarkdownRemark.nodes.map((benefit) => (
         <div>
-          <h3>{node.frontmatter.title}</h3>
+          <h3>{benefit.frontmatter.section_title}</h3>
           <GatsbyImage
-            image={getImage(node.frontmatter.icon)}
-            alt={node.frontmatter.icon_title}
+            image={getImage(benefit.frontmatter.benefit_icon)}
+            alt={benefit.frontmatter.benefit_icon_title}
           />
-          <div>
-            <p>{node.excerpt}</p>
-          </div>
+          <div dangerouslySetInnerHTML={{ __html: benefit.html }} />
         </div>
       ))}
     </>

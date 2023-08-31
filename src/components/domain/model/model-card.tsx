@@ -7,23 +7,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ModelCard = () => {
   const data = useStaticQuery(graphql`
     query ModelCardQuery {
-      allMdx(
+      allMarkdownRemark(
         filter: {
           frontmatter: {
             domain: { eq: "model" }
-            sub_domain: { eq: "model" }
+            domain_section: { eq: "model" }
           }
         }
+        sort: { frontmatter: { no: ASC } }
       ) {
         nodes {
-          excerpt
+          html
           frontmatter {
-            title
-            image {
+            section_title
+            model_image {
               childImageSharp {
                 gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
               }
             }
+            model_image_title
           }
         }
       }
@@ -32,16 +34,14 @@ const ModelCard = () => {
 
   return (
     <>
-      {data.allMdx.nodes.map((node) => (
+      {data.allMarkdownRemark.nodes.map((model) => (
         <div>
-          <h3>{node.frontmatter.title}</h3>
+          <h3>{model.frontmatter.section_title}</h3>
           <GatsbyImage
-            image={getImage(node.frontmatter.image)}
-            alt={node.frontmatter.title}
+            image={getImage(model.frontmatter.model_image)}
+            alt={model.frontmatter.model_image_title}
           />
-          <div>
-            <p>{node.excerpt}</p>
-          </div>
+          <div dangerouslySetInnerHTML={{ __html: model.html }} />
         </div>
       ))}
     </>

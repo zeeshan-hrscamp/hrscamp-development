@@ -7,16 +7,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const CandidateTestimonialCard = () => {
   const data = useStaticQuery(graphql`
     query CandidateTestimonialCardQuery {
-      allMdx(
+      allMarkdownRemark(
         filter: {
           frontmatter: {
             domain: { eq: "candidate" }
-            sub_domain: { eq: "testimonial" }
+            domain_section: { eq: "candidate-testimonial" }
           }
         }
+        sort: { frontmatter: { no: ASC } }
       ) {
         nodes {
-          excerpt
+          html
           frontmatter {
             company_name
             #company_logo {
@@ -41,7 +42,7 @@ const CandidateTestimonialCard = () => {
 
   return (
     <>
-      {data.allMdx.nodes.map((node) => (
+      {data.allMarkdownRemark.nodes.map((node) => (
         <div>
           <p></p>
           {/* <GatsbyImage
@@ -49,16 +50,16 @@ const CandidateTestimonialCard = () => {
             alt={node.frontmatter.company_name}
           /> */}
           <p>{node.frontmatter.person_name}</p>
-          <p>{node.frontmatter.person_role}, {node.frontmatter.company_name}</p>
+          <p>
+            {node.frontmatter.person_role}, {node.frontmatter.company_name}
+          </p>
           <p>{node.frontmatter.person_email}</p>
           <p>{node.frontmatter.person_lindedin_address}</p>
           <GatsbyImage
             image={getImage(node.frontmatter.person_image)}
             alt={node.frontmatter.person_name}
           />
-          <div>
-            <p>{node.excerpt}</p>
-          </div>
+          <div dangerouslySetInnerHTML={{ __html: node.html }} />
         </div>
       ))}
     </>

@@ -1,14 +1,19 @@
 import * as React from "react";
 import Offerings from "./offering";
-import ServiceBenefits from "./benefits";
 import TechnologyStack from "./technology-stack";
 
 const Services = () => {
+  const pageContainer = `
+      flex
+      flex-col
+    `;
+
   return (
     <>
-    <Offerings />
-    <ServiceBenefits />
-    <TechnologyStack />
+      <div className={pageContainer}>
+        <Offerings />
+        <TechnologyStack />
+      </div>
     </>
   );
 };

@@ -4,12 +4,14 @@ import ClientBenefits from "./benefits";
 import ClientCompany from "./companies";
 import ClientTestimonials from "./testimonials";
 import ClientFaqs from "./faqs";
+import ClientProfile from "./client-profile";
 
 const Client = () => {
   return (
     <>
-      <ClientBenefits />
+      <ClientProfile />
       <ClientCompany />
+      <ClientBenefits />
       <ClientTestimonials />
       <ClientFaqs />
     </>

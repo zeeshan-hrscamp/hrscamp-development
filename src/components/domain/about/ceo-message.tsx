@@ -9,64 +9,62 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 const CeoMessage = () => {
   const data = useStaticQuery(graphql`
     query CeoMessageQuery {
-      allMdx(
-        filter: {
-          frontmatter: {
-            category: { eq: "ceo-message" }
-            page: { eq: "about" }
-          }
+      markdownRemark(
+        frontmatter: {
+          domain: { eq: "about" }
+          domain_section: { eq: "ceo-message" }
         }
       ) {
-        nodes {
-          excerpt
-          frontmatter {
-            name
-            role
-            title
-            lindedin_address
-            email
-            image {
-              childImageSharp {
-                gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
-                # gatsbyImageData
-              }
+        frontmatter {
+          section_title
+          name
+          role
+          lindedin_address
+          email
+          ceo_image {
+            childImageSharp {
+              gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
             }
           }
         }
+        html
       }
     }
   `);
 
+  const { markdownRemark } = data;
+  const { frontmatter, html } = markdownRemark;
+
   return (
     <>
-      {data.allMdx.nodes.map((node) => (
-        <div>
-          <h2>{node.frontmatter.title}</h2>
-          <h3>{node.frontmatter.name}</h3>
-          <h4>{node.frontmatter.role}</h4>
-          <GatsbyImage
-            image={getImage(node.frontmatter.image)}
-            alt={node.frontmatter.name}
-          />
-          <div>
-            {node.frontmatter.lindedin_address.length > 0 && (
-              <a href={node.frontmatter.lindedin_address}>
-                <FontAwesomeIcon icon={faLinkedin} />
-              </a>
-            )}
+      <div>
+        <h2>{frontmatter.section_title}</h2>
+        <div className="flex flex-row">
+          <div className="basis-1/2">
+            <h3>{frontmatter.name}</h3>
+            <h4>{frontmatter.role}</h4>
+            <div>
+              {frontmatter.lindedin_address.length > 0 && (
+                <a href={frontmatter.lindedin_address}>
+                  <FontAwesomeIcon icon={faLinkedin} />
+                </a>
+              )}
+              {frontmatter.lindedin_address.length > 0 && (
+                <a href={`mailto:${frontmatter.email}`}>
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </a>
+              )}
+            </div>
+            <GatsbyImage
+              image={getImage(frontmatter.ceo_image)}
+              alt={frontmatter.name}
+            />
           </div>
-          <div>
-            {node.frontmatter.lindedin_address.length > 0 && (
-              <a href={`mailto:${node.frontmatter.email}`}>
-                <FontAwesomeIcon icon={faEnvelope} />
-              </a>
-            )}
-          </div>
-          <div>
-            <p>{node.excerpt}</p>
+          <div className="basis-1/2">
+            <div dangerouslySetInnerHTML={{ __html: html }} />
           </div>
         </div>
-      ))}
+      </div>
     </>
   );
 };

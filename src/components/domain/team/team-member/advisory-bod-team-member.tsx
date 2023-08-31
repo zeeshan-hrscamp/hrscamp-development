@@ -1,5 +1,5 @@
 import * as React from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,28 +9,30 @@ import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 const AdvisoryBODTeamMember = () => {
   const data = useStaticQuery(graphql`
     query AdvisoryBODTeamMemberQuery {
-      allMdx(
+      allMarkdownRemark(
         filter: {
           frontmatter: {
-            category: { eq: "team" }
-            team_type: { eq: "advisory_bod" }
+            domain: { eq: "team" }
+            domain_section: { eq: "advisory-bod" }
           }
         }
+        sort: { frontmatter: { name: ASC } }
       ) {
         nodes {
+          html
           frontmatter {
-            team_type
+            slug
+            section_title
             name
             role
-            lindedin_address
             email
-            image {
+            lindedin_address
+            profile_image {
               childImageSharp {
                 gatsbyImageData(quality: 90, width: 200, layout: CONSTRAINED)
               }
             }
           }
-          excerpt
         }
       }
     }
@@ -38,33 +40,35 @@ const AdvisoryBODTeamMember = () => {
 
   return (
     <>
-      <h2>Advisory Boad</h2>
-      {data.allMdx.nodes.map((node) => (
+      <h2>Advisory Board of Directors</h2>
+      {data.allMarkdownRemark.nodes.map((person) => (
         <div>
-          <h3>{node.frontmatter.name}</h3>
+          <Link to={`/team/${person.frontmatter.slug}`}>
+            <h3>{person.frontmatter.name}</h3>
+          </Link>
           <div>
-            <p>{node.frontmatter.role}</p>
+            <p>{person.frontmatter.role}</p>
           </div>
           <GatsbyImage
-            image={getImage(node.frontmatter.image)}
-            alt={node.frontmatter.name}
+            image={getImage(person.frontmatter.profile_image)}
+            alt={person.frontmatter.name}
           />
           <div>
-            {node.frontmatter.lindedin_address.length > 0 && (
-              <a href={node.frontmatter.lindedin_address}>
+            {person.frontmatter.lindedin_address.length > 0 && (
+              <a href={person.frontmatter.lindedin_address}>
                 <FontAwesomeIcon icon={faLinkedin} />
               </a>
             )}
           </div>
           <div>
-            {node.frontmatter.lindedin_address.length > 0 && (
-              <a href={`mailto:${node.frontmatter.email}`}>
+            {person.frontmatter.lindedin_address.length > 0 && (
+              <a href={`mailto:${person.frontmatter.email}`}>
                 <FontAwesomeIcon icon={faEnvelope} />
               </a>
             )}
           </div>
           <div>
-            <p>{node.excerpt}</p>
+            <div dangerouslySetInnerHTML={{ __html: person.html }} />
           </div>
         </div>
       ))}
