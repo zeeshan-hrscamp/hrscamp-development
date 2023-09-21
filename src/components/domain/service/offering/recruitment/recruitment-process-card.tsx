@@ -35,11 +35,11 @@ const RecruitmentProcessCard = () => {
   return (
     <>
       <div>
-        <h3>{frontmatter.section_title}: Process</h3>
-        {/* <GatsbyImage
-            image={getImage(node.frontmatter.process_image)}
-            alt={node.frontmatter.section_title}
-          /> */}
+        <h3>How It Works</h3>
+        <GatsbyImage
+            image={getImage(frontmatter.process_image)}
+            alt={frontmatter.section_title}
+          />
         <div dangerouslySetInnerHTML={{ __html: html }} />
         <RecruitmentStepCard />
       </div>

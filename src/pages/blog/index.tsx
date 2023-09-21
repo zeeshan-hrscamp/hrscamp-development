@@ -3,15 +3,13 @@ import { Link, graphql } from "gatsby";
 import Seo from "../../components/base/seo/seo";
 import Layout from "../../components/base/layout";
 import BlogPost from "../../components/domain/blog/post";
-// import BlogCategory from "../../components/domain/blog/blog-category";
+import BlogProfile from "../../components/domain/blog/blog-profile/blog-profile";
 
 const BlogPage = ({ data }) => {
   return (
     <>
       <Layout>
-        <h1>Blogs</h1>
-        {/* <BlogCategory /> */}
-        <hr />
+        <BlogProfile />
         {data.allMdx.nodes.map((node) => (
           <BlogPost blogPost={node} />
         ))}

@@ -1,5 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby";
 import * as React from "react";
+import FaqProfile from "./faq-profile/faq-profile";
 
 const Faqs = () => {
   const data = useStaticQuery(graphql`
@@ -20,7 +21,7 @@ const Faqs = () => {
 
   return (
     <>
-      <h2>Frequently Asked Questions</h2>
+      <FaqProfile />
       {data.allMarkdownRemark.nodes.map((node) => (
         <div>
           <p>

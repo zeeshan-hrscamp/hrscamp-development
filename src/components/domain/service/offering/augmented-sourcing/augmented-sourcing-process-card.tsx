@@ -14,7 +14,7 @@ const AugmentedSourcingProcessCard = () => {
         frontmatter: {
           domain: { eq: "service" }
           domain_section: { eq: "process" }
-          section_title: { eq: "Augmented Sourcing" }
+          section_title: { eq: "Staff Augmentation" }
         }
       ) {
         html
@@ -36,11 +36,11 @@ const AugmentedSourcingProcessCard = () => {
   return (
     <>
       <div>
-        <h3>{frontmatter.section_title}</h3>
-        {/* <GatsbyImage
-            image={getImage(node.frontmatter.process_image)}
-            alt={node.frontmatter.section_title}
-          /> */}
+        <h3>How It Works</h3>
+        <GatsbyImage
+          image={getImage(frontmatter.process_image)}
+          alt={frontmatter.section_title}
+        />
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
       <AugmentedSourcingStepCard />

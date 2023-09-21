@@ -1,12 +1,14 @@
 import * as React from "react";
-import ModelCard from "./model-card";
-import ModelBenefits from "./benefits";
+import RecruiterOutsourcingModelCard from "./recruiter-outsourcing/recruiter-outsourcing-model-card";
+import RPOModelCard from "./recruitment-process-outsourcing/rpo-model-card";
+import ModelProfile from "./model-profile/model-profile";
 
 const Models = () => {
   return (
     <>
-      <ModelCard />
-      <ModelBenefits />
+      <ModelProfile />
+      <RPOModelCard />
+      <RecruiterOutsourcingModelCard />
     </>
   );
 };

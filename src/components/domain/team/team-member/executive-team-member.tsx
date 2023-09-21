@@ -19,7 +19,6 @@ const ExecutiveTeamMember = () => {
         sort: { frontmatter: { name: ASC } }
       ) {
         nodes {
-          html
           frontmatter {
             slug
             section_title
@@ -29,7 +28,7 @@ const ExecutiveTeamMember = () => {
             lindedin_address
             profile_image {
               childImageSharp {
-                gatsbyImageData(quality: 90, width: 200, layout: CONSTRAINED)
+                gatsbyImageData(quality: 100, width: 500, layout: CONSTRAINED)
               }
             }
           }
@@ -41,37 +40,41 @@ const ExecutiveTeamMember = () => {
   return (
     <>
       <h2>Executive Team</h2>
-      {data.allMarkdownRemark.nodes.map((person) => (
-        <div>
-          <Link to={`/team/${person.frontmatter.slug}`}>
-            <h3>{person.frontmatter.name}</h3>
-          </Link>
-          <div>
-            <p>{person.frontmatter.role}</p>
+      <hr />
+      <div className="flex flex-row p-3">
+        {data.allMarkdownRemark.nodes.map((person) => (
+          <div className="flex flex-col p-3">
+            <div>
+              <GatsbyImage
+                image={getImage(person.frontmatter.profile_image)}
+                alt={person.frontmatter.name}
+              />
+              <Link to={`/team/${person.frontmatter.slug}`}>
+                <h3>{person.frontmatter.name}</h3>
+              </Link>
+            </div>
+            <div>
+              <p>{person.frontmatter.role}</p>
+            </div>
+            <div className="flex flex-row p-1">
+              <div className="p-1">
+                {person.frontmatter.lindedin_address.length > 0 && (
+                  <a href={person.frontmatter.lindedin_address}>
+                    <FontAwesomeIcon icon={faLinkedin} />
+                  </a>
+                )}
+              </div>
+              <div className="p-1">
+                {person.frontmatter.lindedin_address.length > 0 && (
+                  <a href={`mailto:${person.frontmatter.email}`}>
+                    <FontAwesomeIcon icon={faEnvelope} />
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
-          <GatsbyImage
-            image={getImage(person.frontmatter.profile_image)}
-            alt={person.frontmatter.name}
-          />
-          <div>
-            {person.frontmatter.lindedin_address.length > 0 && (
-              <a href={person.frontmatter.lindedin_address}>
-                <FontAwesomeIcon icon={faLinkedin} />
-              </a>
-            )}
-          </div>
-          <div>
-            {person.frontmatter.lindedin_address.length > 0 && (
-              <a href={`mailto:${person.frontmatter.email}`}>
-                <FontAwesomeIcon icon={faEnvelope} />
-              </a>
-            )}
-          </div>
-          <div>
-            <div dangerouslySetInnerHTML={{ __html: person.html }} />
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 };

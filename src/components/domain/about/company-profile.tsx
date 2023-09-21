@@ -2,6 +2,9 @@ import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+
 const CompanyProfile = () => {
   const data = useStaticQuery(graphql`
     query CompanyProfileQuery {
@@ -13,8 +16,14 @@ const CompanyProfile = () => {
       ) {
         frontmatter {
           section_title
-          company_profile_image_name
+          company_profile_image_title
           company_profile_image {
+            childImageSharp {
+              gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
+            }
+          }
+          company_background_image_title
+          company_background_image {
             childImageSharp {
               gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
             }
@@ -37,10 +46,18 @@ const CompanyProfile = () => {
             <div dangerouslySetInnerHTML={{ __html: html }} />
           </div>
           <div className="basis-1/2">
-            <GatsbyImage
-              image={getImage(frontmatter.company_profile_image)}
-              alt={frontmatter.company_profile_image_name}
-            />
+            <div>
+              <GatsbyImage
+                image={getImage(frontmatter.company_profile_image)}
+                alt={frontmatter.company_profile_image_title}
+              />
+            </div>
+            <div>
+              <GatsbyImage
+                image={getImage(frontmatter.company_background_image)}
+                alt={frontmatter.company_background_image_title}
+              />
+            </div>
           </div>
         </div>
       </div>

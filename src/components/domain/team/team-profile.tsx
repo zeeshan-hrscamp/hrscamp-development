@@ -17,6 +17,12 @@ const TeamProfile = () => {
       ) {
         frontmatter {
           section_title
+          team_profile_image {
+            childImageSharp {
+              gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
+            }
+          }
+          team_profile_image_name
         }
         html
       }
@@ -31,8 +37,14 @@ const TeamProfile = () => {
       <div>
         <h2>{frontmatter.section_title}</h2>
         <div className="flex flex-row">
-          <div>
+          <div className="basis-1/2">
             <div dangerouslySetInnerHTML={{ __html: html }} />
+          </div>
+          <div className="basis-1/2">
+            <GatsbyImage
+              image={getImage(frontmatter.team_profile_image)}
+              alt={frontmatter.team_profile_image_name}
+            />
           </div>
         </div>
       </div>

@@ -24,7 +24,7 @@ const RecruitmentStepCard = () => {
             step_no
             step_image {
               childImageSharp {
-                gatsbyImageData(quality: 30, width: 30, layout: CONSTRAINED)
+                gatsbyImageData(quality: 90, width: 90, layout: CONSTRAINED)
               }
             }
           }
@@ -37,11 +37,12 @@ const RecruitmentStepCard = () => {
     <>
       {data.allMarkdownRemark.nodes.map((node) => (
         <div>
-          <h4>Step#: {node.frontmatter.step_no} {node.frontmatter.step_name}</h4>
+          {/* <img src={...publicURL} alt=""/>  */}
           <GatsbyImage
             image={getImage(node.frontmatter.step_image)}
             alt={node.frontmatter.step_name}
           />
+          <h4>{node.frontmatter.step_name}</h4>
           <div dangerouslySetInnerHTML={{ __html: node.html }} />
         </div>
       ))}

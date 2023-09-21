@@ -5,7 +5,7 @@ import ClientBenefitCard from "./client-benefit-card";
 const ClientBenefits = () => {
   return (
     <>
-      <h2>Client Benefits</h2>
+      <h2>Why Us?</h2>
       <ClientBenefitCard />
     </>
   );

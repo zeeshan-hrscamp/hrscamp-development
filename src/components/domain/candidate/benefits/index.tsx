@@ -4,7 +4,7 @@ import CandidateBenefitCard from "./candidate-benefit-card";
 const CandidateBenefits = () => {
   return (
     <>
-      <h2>Candidate Benefits</h2>
+      <h2>Why Us?</h2>
       <CandidateBenefitCard />
     </>
   );

@@ -12,7 +12,7 @@ const AugmentedSourcingServiceBenefitCard = () => {
           frontmatter: {
             domain: { eq: "service" }
             domain_section: { eq: "benefit" }
-            service_title: { eq: "Augmented Sourcing" }
+            service_title: { eq: "Staff Augmentation" }
           }
         }
         sort: { frontmatter: { no: ASC } }
@@ -23,7 +23,7 @@ const AugmentedSourcingServiceBenefitCard = () => {
             section_title
             service_benefit_icon {
               childImageSharp {
-                gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
+                gatsbyImageData(quality: 90, width: 90, layout: CONSTRAINED)
               }
             }
             service_benefit_icon_title
@@ -35,14 +35,21 @@ const AugmentedSourcingServiceBenefitCard = () => {
 
   return (
     <>
+      <h2>Why Us?</h2>
       {data.allMarkdownRemark.nodes.map((benefit) => (
-        <div>
-          <h3>{benefit.frontmatter.section_title}</h3>
-          <GatsbyImage
-            image={getImage(benefit.frontmatter.service_benefit_icon)}
-            alt={benefit.frontmatter.service_benefit_icon_title}
-          />
-          <div dangerouslySetInnerHTML={{ __html: benefit.html }} />
+        <div className="flex flex-row">
+          <div className="flex flex-col basis-1/4">
+            <GatsbyImage
+              image={getImage(benefit.frontmatter.service_benefit_icon)}
+              alt={benefit.frontmatter.service_benefit_icon_title}
+            />
+            <div className="flex justify-center">
+              <h5>{benefit.frontmatter.section_title}</h5>
+            </div>
+          </div>
+          <div className="basis-3/4">
+            <div dangerouslySetInnerHTML={{ __html: benefit.html }} />
+          </div>
         </div>
       ))}
     </>

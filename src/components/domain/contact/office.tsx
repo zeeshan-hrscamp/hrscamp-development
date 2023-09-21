@@ -47,7 +47,13 @@ const Office = () => {
 
   return (
     <>
-      <h2>Offices</h2>
+      <h2>Our Global Reach, Your Local Connection</h2>
+      <p>
+        Explore HRS Camp's network of strategically placed offices, offering
+        global reach with a local touch. Our offices ensure accessibility to
+        top-tier talent and personalized recruitment solutions tailored to your
+        region. Contact us to harness the power of our global expertise.
+      </p>
       {data.allMarkdownRemark.nodes.map((office) => (
         <div>
           <h4>{office.frontmatter.name}</h4>

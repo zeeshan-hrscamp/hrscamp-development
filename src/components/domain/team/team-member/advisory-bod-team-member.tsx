@@ -19,7 +19,6 @@ const AdvisoryBODTeamMember = () => {
         sort: { frontmatter: { name: ASC } }
       ) {
         nodes {
-          html
           frontmatter {
             slug
             section_title
@@ -29,7 +28,7 @@ const AdvisoryBODTeamMember = () => {
             lindedin_address
             profile_image {
               childImageSharp {
-                gatsbyImageData(quality: 90, width: 200, layout: CONSTRAINED)
+                gatsbyImageData(quality: 100, width: 500, layout: CONSTRAINED)
               }
             }
           }
@@ -41,6 +40,7 @@ const AdvisoryBODTeamMember = () => {
   return (
     <>
       <h2>Advisory Board of Directors</h2>
+      <hr />
       {data.allMarkdownRemark.nodes.map((person) => (
         <div>
           <Link to={`/team/${person.frontmatter.slug}`}>
@@ -66,9 +66,6 @@ const AdvisoryBODTeamMember = () => {
                 <FontAwesomeIcon icon={faEnvelope} />
               </a>
             )}
-          </div>
-          <div>
-            <div dangerouslySetInnerHTML={{ __html: person.html }} />
           </div>
         </div>
       ))}

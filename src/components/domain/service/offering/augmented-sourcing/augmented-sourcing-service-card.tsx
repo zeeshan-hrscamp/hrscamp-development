@@ -13,7 +13,7 @@ const AugmentedSourcingServiceCard = () => {
         frontmatter: {
           domain: { eq: "service" }
           domain_section: { eq: "offering" }
-          section_title: { eq: "Augmented Sourcing" }
+          section_title: { eq: "Staff Augmentation" }
         }
       ) {
         html
@@ -21,7 +21,7 @@ const AugmentedSourcingServiceCard = () => {
           section_title
           service_image {
             childImageSharp {
-              gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
+              gatsbyImageData(quality: 90, width: 90, layout: CONSTRAINED)
             }
           }
         }
