@@ -8,8 +8,9 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Seo from "../components/base/seo/seo";
 import Layout from "../components/base/layout";
 
+// query ($slug: String!) {
 export const query = graphql`
-  query ($slug: String!) {
+  query ($slug: String) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
       frontmatter {

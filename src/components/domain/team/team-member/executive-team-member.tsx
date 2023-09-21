@@ -28,7 +28,7 @@ const ExecutiveTeamMember = () => {
             lindedin_address
             profile_image {
               childImageSharp {
-                gatsbyImageData(quality: 100, width: 500, layout: CONSTRAINED)
+                gatsbyImageData(quality: 90, width: 500, layout: CONSTRAINED)
               }
             }
           }

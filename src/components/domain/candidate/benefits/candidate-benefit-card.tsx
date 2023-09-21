@@ -22,7 +22,7 @@ const CandidateBenefitCard = () => {
             section_title
             benefit_icon {
               childImageSharp {
-                gatsbyImageData(quality: 100, width: 100, layout: CONSTRAINED)
+                gatsbyImageData(quality: 90,width: 100, layout: CONSTRAINED)
               }
             }
             benefit_icon_title
