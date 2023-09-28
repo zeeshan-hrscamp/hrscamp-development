@@ -2,98 +2,51 @@ import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faLocationDot,
-  faPhone,
-} from "@fortawesome/free-solid-svg-icons";
+import OfficeCard from "./office-card";
 
 const Office = () => {
   const data = useStaticQuery(graphql`
     query OfficeQuery {
-      allMarkdownRemark(
-        filter: {
-          frontmatter: {
-            domain: { eq: "contact" }
-            domain_section: { eq: "office" }
-          }
+      markdownRemark(
+        frontmatter: {
+          domain: { eq: "contact" }
+          domain_section: { eq: "office-profile" }
         }
-        sort: { frontmatter: { name: ASC } }
       ) {
-        nodes {
-          html
-          frontmatter {
-            section_title
-            name
-            address
-            city
-            country
-            country_code
-            area_network_code
-            phone
-            email
-            office_image {
-              childImageSharp {
-                gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
-              }
+        frontmatter {
+          section_title
+          office_profile_image {
+            childImageSharp {
+              gatsbyImageData(quality: 90, layout: FULL_WIDTH)
             }
-            office_image_alt
           }
+          office_profile_image_name
         }
+        html
       }
     }
   `);
 
+  const { markdownRemark } = data;
+  const { frontmatter, html } = markdownRemark;
+
   return (
     <>
-      <h2>Our Global Reach, Your Local Connection</h2>
-      <p>
-        Explore HRS Camp's network of strategically placed offices, offering
-        global reach with a local touch. Our offices ensure accessibility to
-        top-tier talent and personalized recruitment solutions tailored to your
-        region. Contact us to harness the power of our global expertise.
-      </p>
-      {data.allMarkdownRemark.nodes.map((office) => (
-        <div>
-          <h4>{office.frontmatter.name}</h4>
-          <GatsbyImage
-            image={getImage(office.frontmatter.office_image)}
-            alt={office.frontmatter.office_image_alt}
-          />
-          <div dangerouslySetInnerHTML={{ __html: office.html }} />
-
-          <div>
-            <FontAwesomeIcon icon={faLocationDot} />:{" "}
-            {office.frontmatter.address}
-          </div>
-          <div>
-            <p>
-              {office.frontmatter.city}, {office.frontmatter.country}
-            </p>
-          </div>
-          <div>
-            {office.frontmatter.phone?.length > 0 && (
-              <p>
-                <FontAwesomeIcon icon={faPhone} />:{" "}
-                {office.frontmatter.country_code}{" "}
-                {office.frontmatter.area_network_code}{" "}
-                {office.frontmatter.phone}
-              </p>
-            )}
-          </div>
-          <div>
-            <p>
-              {office.frontmatter.email?.length > 0 && (
-                <p>
-                  <FontAwesomeIcon icon={faEnvelope} />:{" "}
-                  {office.frontmatter.email}
-                </p>
-              )}
-            </p>
-          </div>
+      <div className="flex flex-row">
+        <div className="flex flex-col basis-1/2 grid content-center">
+          <h2 className="text-5xl text-green-600">
+            {frontmatter.section_title}
+          </h2>
         </div>
-      ))}
+        <div className="flex flex-col basis-1/2">
+          <GatsbyImage
+            image={getImage(frontmatter.office_profile_image)}
+            alt={frontmatter.office_profile_image_name}
+          />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <OfficeCard />
+        </div>
+      </div>
     </>
   );
 };

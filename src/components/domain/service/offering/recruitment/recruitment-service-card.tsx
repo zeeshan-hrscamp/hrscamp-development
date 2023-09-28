@@ -2,12 +2,8 @@ import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ServiceBenefits from "../benefits";
-import ProcessCard from "../augmented-sourcing/augmented-sourcing-process-card";
-import ServiceBenefitCard from "./recruitment-service-benefit-card";
-import RecruitmentServiceBenefitCard from "./recruitment-service-benefit-card";
 import RecruitmentProcessCard from "./recruitment-process-card";
+import RecruitmentBenefits from "./recruitment-benefits/recruitment-benefits";
 
 const RecruitmentServiceCard = () => {
   const data = useStaticQuery(graphql`
@@ -27,6 +23,7 @@ const RecruitmentServiceCard = () => {
               gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
             }
           }
+          service_image_alt
         }
       }
     }
@@ -35,32 +32,24 @@ const RecruitmentServiceCard = () => {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
 
-  const verticleSectionContainer = `
-      flex
-      flex-col
-    `;
-
   return (
     <>
-      <div className="flex flex-col">
-        <div className="pt-5">
-          <h1>{frontmatter.section_title}</h1>
-          <hr />
+      <div className="flex flex-row">
+        <div className="flex flex-col basis-1/2 grid content-center">
+          <h2 className="text-5xl text-green-600 ">
+            {frontmatter.section_title}
+          </h2>
         </div>
-        <div className="flex flex-row">
-          <div className="basis-1/3">
-            <GatsbyImage
-              image={getImage(frontmatter.service_image)}
-              alt={frontmatter.title}
-            />
-          </div>
-          <div className="flex flex-col basis-2/3">
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-            <hr />
-            <RecruitmentServiceBenefitCard />
-            <hr />
-            <RecruitmentProcessCard />
-          </div>
+        <div className="flex flex-col basis-1/2">
+          <GatsbyImage
+            image={getImage(frontmatter.service_image)}
+            alt={frontmatter.service_image_alt}
+          />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <hr />
+          <RecruitmentBenefits />
+          <hr />
+          <RecruitmentProcessCard />
         </div>
       </div>
     </>

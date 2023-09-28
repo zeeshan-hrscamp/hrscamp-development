@@ -2,13 +2,8 @@ import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import TrainingServiceBenefitCard from "./visa-processing-service-benefit-card";
-import TrainingProcessCard from "./visa-processing-process-card";
-import VisaProcessingServiceBenefitCard from "./visa-processing-service-benefit-card";
-import VisaProcessingProcessCard from "./visa-processing-process-card";
-import VisaProcessingCandidateServiceBenefitCard from "./visa-processing-service-benefit-card";
 import VisaProcessingCandidateProcessCard from "./visa-processing-process-card";
+import VPCandidateBenefits from "./visa-processing-candidate-benefits/visa-processing-candidate-benefits";
 
 const VisaProcessingCandidateServiceCard = () => {
   const data = useStaticQuery(graphql`
@@ -38,25 +33,22 @@ const VisaProcessingCandidateServiceCard = () => {
 
   return (
     <>
-      <div className="flex flex-col">
-        <div className="pt-5">
-          <h1>{frontmatter.section_title}</h1>
-          <hr />
+      <div className="flex flex-row">
+        <div className="flex flex-col basis-1/2 grid content-center">
+          <h2 className="text-5xl text-green-600 ">
+            {frontmatter.section_title}
+          </h2>
         </div>
-        <div className="flex flex-row">
-          <div className="basis-1/3">
-            <GatsbyImage
-              image={getImage(frontmatter.service_image)}
-              alt={frontmatter.title}
-            />
-          </div>
-          <div className="flex flex-col basis-2/3">
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-            <hr />
-            <VisaProcessingCandidateServiceBenefitCard />
-            <hr />
-            <VisaProcessingCandidateProcessCard />
-          </div>
+        <div className="flex flex-col basis-1/2">
+          <GatsbyImage
+            image={getImage(frontmatter.service_image)}
+            alt={frontmatter.service_image_alt}
+          />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <hr />
+          <VPCandidateBenefits />
+          <hr />
+          <VisaProcessingCandidateProcessCard />
         </div>
       </div>
     </>

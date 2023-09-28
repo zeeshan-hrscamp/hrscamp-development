@@ -33,35 +33,32 @@ const Faq = () => {
 
   return (
     <>
-      <div>
-        <h2>{frontmatter.section_title}</h2>
-        <div className="flex flex-row">
-          {/* <div className="basis-1/2">
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-          </div> */}
-          <div className="basis-1/2">
-            <div>
-              <GatsbyImage
-                image={getImage(frontmatter.faq_image)}
-                alt={frontmatter.faq_image_title}
-                />
-            </div>
+      <div className="flex flex-row">
+        <div className="flex flex-col basis-1/2 grid content-center">
+          <h2 className="text-5xl text-green-600 ">
+            {frontmatter.section_title}
+          </h2>
+        </div>
+        <div className="flex flex-col basis-1/2">
+          <GatsbyImage
+            image={getImage(frontmatter.faq_image)}
+            alt={frontmatter.faq_image_title}
+          />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <div>
+            <p>{frontmatter.faq_1}</p>
+            <p>{frontmatter.ans_1}</p>
           </div>
+          <div>
+            <p>{frontmatter.faq_2}</p>
+            <p>{frontmatter.ans_2}</p>
+          </div>
+          <div>
+            <p>{frontmatter.faq_3}</p>
+            <p>{frontmatter.ans_3}</p>
+          </div>
+          <button className="bg-green-300">More FAQs</button>
         </div>
-        {/* --- */}
-        <div>
-          <p>{frontmatter.faq_1}</p>
-          <p>{frontmatter.ans_1}</p>
-        </div>
-        <div>
-          <p>{frontmatter.faq_2}</p>
-          <p>{frontmatter.ans_2}</p>
-        </div>
-        <div>
-          <p>{frontmatter.faq_3}</p>
-          <p>{frontmatter.ans_3}</p>
-        </div>
-        <button className="bg-green-300">More FAQs</button>
       </div>
     </>
   );

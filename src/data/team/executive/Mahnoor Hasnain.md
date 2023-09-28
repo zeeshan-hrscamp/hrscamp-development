@@ -1,5 +1,6 @@
 ---
 domain: "team"
+sub_domain: "team"
 domain_section: "executive-team"
 section_title: "Executive Team"
 slug: "mahnoor-hasnain"

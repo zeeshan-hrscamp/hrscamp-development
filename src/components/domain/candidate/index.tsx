@@ -9,8 +9,11 @@ const Candidate = () => {
   return (
     <>
       <CandidateProfile />
+      <hr />
       <CandidateBenefits />
+      <hr />
       <CandidateTestimonials />
+      <hr />
       <CandidateFaqs />
     </>
   );

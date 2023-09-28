@@ -1,6 +1,6 @@
 import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 
 const ServiceCard = () => {
   const data = useStaticQuery(graphql`
@@ -31,16 +31,26 @@ const ServiceCard = () => {
 
   return (
     <>
+      <StaticImage
+        src="../../../../images/icon.png"
+        width={100}
+        height={100}
+        alt="icon"
+      />
+      <h2 className="text-4xl text-green-600">Why Us?</h2>
       {data.allMarkdownRemark.nodes.map((service) => (
-        <div className="flex flex-col">
-          <div className="flex justify-center">
+        <div className="flex flex-row">
+          <div className="flex flex-col grid content-center basis-1/4">
             <GatsbyImage
               image={getImage(service.frontmatter.service_image)}
               alt={service.frontmatter.service_image_title}
             />
+            <div className="flex justify-center">
+              <h5>{service.frontmatter.section_title}</h5>
+            </div>
           </div>
-          <div className="flex justify-center">
-            <h2>{service.frontmatter.section_title}</h2>
+          <div className="basis-3/4">
+            <div dangerouslySetInnerHTML={{ __html: service.html }} />
           </div>
         </div>
       ))}

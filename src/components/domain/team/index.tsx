@@ -9,8 +9,11 @@ const Team = () => {
   return (
     <>
       <TeamProfile />
+      <hr />
       <BODTeamMember />
+      <hr />
       <AdvisoryBODTeamMember />
+      <hr />
       <ExecutiveTeamMember />
     </>
   );

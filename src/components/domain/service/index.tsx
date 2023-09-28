@@ -8,7 +8,9 @@ const Services = () => {
     <>
       <div>
         <ServiceProfile />
+        <hr />
         <Offerings />
+        <hr />
         <TechnologyStack />
       </div>
     </>

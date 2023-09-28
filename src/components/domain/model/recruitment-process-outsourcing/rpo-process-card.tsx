@@ -21,7 +21,7 @@ const RPOProcessCard = () => {
           section_title
           process_image {
             childImageSharp {
-              gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
+              gatsbyImageData(quality: 99, layout: FULL_WIDTH)
             }
           }
         }
@@ -35,7 +35,7 @@ const RPOProcessCard = () => {
   return (
     <>
       <div>
-        <h3>How It Works</h3>
+        <h2 className="text-4xl text-green-600">How It Works</h2>
         <GatsbyImage
           image={getImage(frontmatter.process_image)}
           alt={frontmatter.section_title}

@@ -8,8 +8,14 @@ import StatementCard from "./statement-card";
 const Statement = () => {
   return (
     <>
-      <h2>Statements</h2>
-      <StatementCard />
+      <div className="flex flex-row">
+        <div className="flex flex-col basis-1/2 grid content-center">
+          <h2 className="text-5xl text-green-600 ">Statements</h2>
+        </div>
+        <div className="flex flex-col basis-1/2">
+          <StatementCard />
+        </div>
+      </div>
     </>
   );
 };

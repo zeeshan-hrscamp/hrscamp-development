@@ -31,25 +31,19 @@ const Candidate = () => {
 
   return (
     <>
-      <div>
-        <h2>{frontmatter.section_title}</h2>
-        <div className="flex flex-col">
-          <div className="flex flex-row">
-            <div className="basis-1/2">
-              <div dangerouslySetInnerHTML={{ __html: html }} />
-            </div>
-            <div className="basis-1/2">
-              <div>
-                <GatsbyImage
-                  image={getImage(frontmatter.candidate_image)}
-                  alt={frontmatter.candidate_image_title}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-row">
-            <CandidateHomeBenefitCard />
-          </div>
+      <div className="flex flex-row">
+        <div className="flex flex-col basis-1/2 grid content-center">
+          <h2 className="text-5xl text-green-600 ">
+            {frontmatter.section_title}
+          </h2>
+        </div>
+        <div className="flex flex-col basis-1/2">
+          <GatsbyImage
+            image={getImage(frontmatter.candidate_image)}
+            alt={frontmatter.candidate_image_title}
+          />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <CandidateHomeBenefitCard />
           <button className="bg-green-300">Candidate</button>
         </div>
       </div>

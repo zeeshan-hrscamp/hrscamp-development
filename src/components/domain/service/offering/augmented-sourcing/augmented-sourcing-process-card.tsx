@@ -2,9 +2,6 @@ import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ServiceBenefitCard from "../recruitment/recruitment-service-benefit-card";
-import RecruitmentStepCard from "../recruitment/recruitment-step-card";
 import AugmentedSourcingStepCard from "./augmented-sourcing-step-card";
 
 const AugmentedSourcingProcessCard = () => {
@@ -36,14 +33,14 @@ const AugmentedSourcingProcessCard = () => {
   return (
     <>
       <div>
-        <h3>How It Works</h3>
+        <h2 className="text-4xl text-green-600">How It Works</h2>
         <GatsbyImage
           image={getImage(frontmatter.process_image)}
           alt={frontmatter.section_title}
         />
         <div dangerouslySetInnerHTML={{ __html: html }} />
+        <AugmentedSourcingStepCard />
       </div>
-      <AugmentedSourcingStepCard />
     </>
   );
 };

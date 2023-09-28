@@ -7,7 +7,9 @@ const Models = () => {
   return (
     <>
       <ModelProfile />
+      <hr />
       <RPOModelCard />
+      <hr />
       <RecruiterOutsourcingModelCard />
     </>
   );

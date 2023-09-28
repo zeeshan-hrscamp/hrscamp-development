@@ -3,10 +3,11 @@ import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import TrainingServiceBenefitCard from "./rpo-model-benefit-card";
+import TrainingServiceBenefitCard from "./recruitment-process-outsourcing-benefits/rpo-model-benefit-card";
 import TrainingProcessCard from "./rpo-process-card";
-import RPOModelBenefitCard from "./rpo-model-benefit-card";
+import RPOModelBenefitCard from "./recruitment-process-outsourcing-benefits/rpo-model-benefit-card";
 import RPOProcessCard from "./rpo-process-card";
+import RPOModelBenefits from "./recruitment-process-outsourcing-benefits/rpo-model-benefits";
 
 const RPOModelCard = () => {
   const data = useStaticQuery(graphql`
@@ -26,6 +27,7 @@ const RPOModelCard = () => {
               gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
             }
           }
+          model_image_alt
         }
       }
     }
@@ -34,33 +36,24 @@ const RPOModelCard = () => {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
 
-  const verticleSectionContainer = `
-      flex
-      flex-col
-    `;
-
   return (
     <>
-      <div className="flex flex-col">
-        <div className="pt-5">
-          <h1>{frontmatter.section_title}</h1>
-          <hr />
+      <div className="flex flex-row">
+        <div className="flex flex-col basis-1/2 grid content-center">
+          <h2 className="text-5xl text-green-600 ">
+            {frontmatter.section_title}
+          </h2>
         </div>
-        <div className="flex flex-row">
-          <div className="basis-1/3">
-            <GatsbyImage
-              image={getImage(frontmatter.service_image)}
-              alt={frontmatter.title}
-            />
-          </div>
-          <div className="flex flex-col basis-2/3">
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-            <hr />
-            <RPOModelBenefitCard />
-
-            <hr />
-            <RPOProcessCard />
-          </div>
+        <div className="flex flex-col basis-1/2">
+          <GatsbyImage
+            image={getImage(frontmatter.model_image)}
+            alt={frontmatter.model_image_alt}
+          />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <hr />
+          <RPOModelBenefits />
+          <hr />
+          <RPOProcessCard />
         </div>
       </div>
     </>

@@ -1,5 +1,6 @@
 ---
 domain: "team"
+sub_domain: "team"
 domain_section: "advisory-bod"
 section_title: "Advisory Board of Directors"
 slug: "dr-atif-alvi"

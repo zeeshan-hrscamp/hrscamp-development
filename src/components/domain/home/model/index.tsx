@@ -33,29 +33,27 @@ const Model = () => {
 
   return (
     <>
-      <h2>{frontmatter.section_title}</h2>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <div className="basis-1/2">
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-          </div>
-          <div className="basis-1/2">
-            <GatsbyImage
-              image={getImage(frontmatter.model_image)}
-              alt={frontmatter.model_image_title}
-            />
-          </div>
+      <div className="flex flex-row">
+        <div className="flex flex-col basis-1/2 grid content-center">
+          <h2 className="text-5xl text-green-600 ">
+            {frontmatter.section_title}
+          </h2>
         </div>
-        <div className="flex flex-row p-1">
+        <div className="flex flex-col basis-1/2">
+          <GatsbyImage
+            image={getImage(frontmatter.model_image)}
+            alt={frontmatter.model_image_title}
+          />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
           <div className="basis-1/2">
             <RPO />
           </div>
           <div className="basis-1/2">
             <RO />
           </div>
+          <button className="bg-green-300">Business Model</button>
         </div>
       </div>
-      <button className="bg-green-300">Business Model</button>
     </>
   );
 };

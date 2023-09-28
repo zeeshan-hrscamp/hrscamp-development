@@ -8,7 +8,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     const { data } = await graphql(`
     {
         allMarkdownRemark(
-            filter: {frontmatter: {domain: {eq: "team"}}}
+            filter: {
+                frontmatter: {
+                    domain: {eq: "team"}
+                    sub_domain: {eq: "team"
+                }
+            }
+        }
             sort: {frontmatter: {name: ASC}}
             limit: 1000
         ) {

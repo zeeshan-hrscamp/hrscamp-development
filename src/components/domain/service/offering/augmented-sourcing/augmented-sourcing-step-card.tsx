@@ -2,8 +2,6 @@ import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 const AugmentedSourcingStepCard = () => {
   const data = useStaticQuery(graphql`
     query AugmentedSourcingStepCardQuery {
@@ -36,14 +34,20 @@ const AugmentedSourcingStepCard = () => {
   return (
     <>
       {data.allMarkdownRemark.nodes.map((node) => (
-        <div>
+        <div className="flex flex-row">
+        <div className="flex flex-col grid content-center basis-1/4">
           <GatsbyImage
             image={getImage(node.frontmatter.step_image)}
             alt={node.frontmatter.step_name}
           />
-          <h4>{node.frontmatter.step_name}</h4>
+          <div className="flex justify-center">
+            <h4>{node.frontmatter.step_name}</h4>
+          </div>
+        </div>
+        <div className="grid content-center basis-3/4">
           <div dangerouslySetInnerHTML={{ __html: node.html }} />
         </div>
+      </div>
       ))}
     </>
   );

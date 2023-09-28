@@ -1,5 +1,6 @@
 ---
 domain: "team"
+sub_domain: "team"
 domain_section: "bod"
 section_title: "Board of Directors"
 slug: "ahmad-hasnain"

@@ -3,6 +3,7 @@ domain: "service"
 domain_section: "offering"
 section_title: "Staff Augmentation"
 service_image: "../../../../images/client/company_logo/allied-marketing.png"
+service_image_alt: "allied-marketing"
 ---
 
 HRS Camp is delighted to introduce our comprehensive "Staff Augmentation" service designed to empower your organization with the agility and flexibility needed in today's dynamic business landscape. Staff Augmentation goes beyond traditional recruitment; it's a strategic partnership that allows you to seamlessly scale your workforce, tapping into our extensive network of skilled professionals on a temporary or project-specific basis.

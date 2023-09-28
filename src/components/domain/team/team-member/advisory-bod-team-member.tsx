@@ -39,36 +39,47 @@ const AdvisoryBODTeamMember = () => {
 
   return (
     <>
-      <h2>Advisory Board of Directors</h2>
-      <hr />
-      {data.allMarkdownRemark.nodes.map((person) => (
-        <div>
-          <Link to={`/team/${person.frontmatter.slug}`}>
-            <h3>{person.frontmatter.name}</h3>
-          </Link>
-          <div>
-            <p>{person.frontmatter.role}</p>
-          </div>
-          <GatsbyImage
-            image={getImage(person.frontmatter.profile_image)}
-            alt={person.frontmatter.name}
-          />
-          <div>
-            {person.frontmatter.lindedin_address.length > 0 && (
-              <a href={person.frontmatter.lindedin_address}>
-                <FontAwesomeIcon icon={faLinkedin} />
-              </a>
-            )}
-          </div>
-          <div>
-            {person.frontmatter.lindedin_address.length > 0 && (
-              <a href={`mailto:${person.frontmatter.email}`}>
-                <FontAwesomeIcon icon={faEnvelope} />
-              </a>
-            )}
-          </div>
+      <div className="flex flex-row">
+        <div className="flex flex-col basis-1/2 grid content-center">
+          <h2 className="text-5xl text-green-600">
+            Advisory Board of Directors
+          </h2>
         </div>
-      ))}
+        <div className="flex flex-col basis-1/2">
+          {data.allMarkdownRemark.nodes.map((person) => (
+            <div className="flex flex-col p-3">
+              <div>
+                <GatsbyImage
+                  image={getImage(person.frontmatter.profile_image)}
+                  alt={person.frontmatter.name}
+                />
+                <Link to={`/team/${person.frontmatter.slug}`}>
+                  <h3>{person.frontmatter.name}</h3>
+                </Link>
+              </div>
+              <div>
+                <p>{person.frontmatter.role}</p>
+              </div>
+              <div className="flex flex-row p-1">
+                <div className="p-1">
+                  {person.frontmatter.lindedin_address.length > 0 && (
+                    <a href={person.frontmatter.lindedin_address}>
+                      <FontAwesomeIcon icon={faLinkedin} />
+                    </a>
+                  )}
+                </div>
+                <div className="p-1">
+                  {person.frontmatter.lindedin_address.length > 0 && (
+                    <a href={`mailto:${person.frontmatter.email}`}>
+                      <FontAwesomeIcon icon={faEnvelope} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </>
   );
 };

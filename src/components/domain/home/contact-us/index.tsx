@@ -37,9 +37,13 @@ const ContactUs = () => {
 
   return (
     <>
-      <div>
-        <h2>{frontmatter.section_title}</h2>
-        <div className="flex justify-center">
+      <div className="flex flex-row">
+        <div className="flex flex-col basis-1/2 grid content-center">
+          <h2 className="text-5xl text-green-600 ">
+            {frontmatter.section_title}
+          </h2>
+        </div>
+        <div className="flex flex-col basis-1/2">
           <div className="font-sans text-5xl text-green-500">
             {frontmatter.contact_us_email}
           </div>
@@ -49,20 +53,13 @@ const ContactUs = () => {
               alt={frontmatter.contact_us_image_title}
             />
           </div>
+          // TEST NOT NEEDED?
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <ContactFormLink />
+          <OfficeLink />
+          <SocialPageLink />
+          <button className="bg-green-300">Contact Us</button>
         </div>
-
-        <div className="flex flex-row">
-          <div className="basis-1/3">
-            <ContactFormLink />
-          </div>
-          <div className="basis-1/3">
-            <OfficeLink />
-          </div>
-          <div className="basis-1/3">
-            <SocialPageLink />
-          </div>
-        </div>
-        {/* <div dangerouslySetInnerHTML={{ __html: html }} /> */}
       </div>
     </>
   );

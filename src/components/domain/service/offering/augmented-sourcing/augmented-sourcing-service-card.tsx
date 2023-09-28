@@ -3,8 +3,9 @@ import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AugmentedSourcingServiceBenefitCard from "./augmented-sourcing-service-benefit-card";
+import AugmentedSourcingServiceBenefitCard from "./augmented-sourcing-benefits/augmented-sourcing-service-benefit-card";
 import AugmentedSourcingProcessCard from "./augmented-sourcing-process-card";
+import AugmentedSourcingBenefits from "./augmented-sourcing-benefits/augmented-sourcing-benefits";
 
 const AugmentedSourcingServiceCard = () => {
   const data = useStaticQuery(graphql`
@@ -34,25 +35,22 @@ const AugmentedSourcingServiceCard = () => {
 
   return (
     <>
-      <div className="flex flex-col">
-        <div className="pt-5">
-          <h1>{frontmatter.section_title}</h1>
-          <hr />
+      <div className="flex flex-row">
+        <div className="flex flex-col basis-1/2 grid content-center">
+          <h2 className="text-5xl text-green-600 ">
+            {frontmatter.section_title}
+          </h2>
         </div>
-        <div className="flex flex-row">
-          <div className="basis-1/3">
-            <GatsbyImage
-              image={getImage(frontmatter.service_image)}
-              alt={frontmatter.title}
-            />
-          </div>
-          <div className="flex flex-col basis-2/3">
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-            <hr />
-            <AugmentedSourcingServiceBenefitCard />
-            <hr />
-            <AugmentedSourcingProcessCard />
-          </div>
+        <div className="flex flex-col basis-1/2">
+          <GatsbyImage
+            image={getImage(frontmatter.service_image)}
+            alt={frontmatter.service_image_alt}
+          />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <hr />
+          <AugmentedSourcingBenefits />
+          <hr />
+          <AugmentedSourcingProcessCard />
         </div>
       </div>
     </>

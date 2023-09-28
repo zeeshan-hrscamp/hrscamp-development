@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link, graphql } from "gatsby";
 import Seo from "../../components/base/seo/seo";
 import Layout from "../../components/base/layout";
-import BlogPost from "../../components/domain/blog/post";
+import BlogPost from "../../components/domain/blog/blog-post";
 import BlogProfile from "../../components/domain/blog/blog-profile/blog-profile";
 
 const BlogPage = ({ data }) => {
@@ -10,9 +10,11 @@ const BlogPage = ({ data }) => {
     <>
       <Layout>
         <BlogProfile />
-        {data.allMdx.nodes.map((node) => (
-          <BlogPost blogPost={node} />
-        ))}
+        <div className="flex flex-row">
+          {data.allMdx.nodes.map((node) => (
+            <BlogPost blogPost={node} />
+          ))}
+        </div>
       </Layout>
     </>
   );

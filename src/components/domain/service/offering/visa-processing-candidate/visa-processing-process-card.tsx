@@ -36,7 +36,7 @@ const VisaProcessingCandidateProcessCard = () => {
   return (
     <>
       <div>
-        <h3>How It Works</h3>
+        <h2 className="text-4xl text-green-600">How It Works</h2>
         <GatsbyImage
           image={getImage(frontmatter.process_image)}
           alt={frontmatter.section_title}
