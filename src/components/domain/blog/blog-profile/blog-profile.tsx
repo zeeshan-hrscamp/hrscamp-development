@@ -26,7 +26,6 @@ const BlogProfile = () => {
   `);
 
   const { markdownRemark } = data;
-
   const { frontmatter, html } = markdownRemark;
 
   return (

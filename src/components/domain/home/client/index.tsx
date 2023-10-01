@@ -43,6 +43,7 @@ const Client = () => {
             alt={frontmatter.client_image_title}
           />
           <div dangerouslySetInnerHTML={{ __html: html }} />
+          <hr />
           <ClientHomeBenefitCard />
           <button className="bg-green-300">Clients</button>
         </div>

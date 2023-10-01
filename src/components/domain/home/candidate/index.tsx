@@ -43,6 +43,7 @@ const Candidate = () => {
             alt={frontmatter.candidate_image_title}
           />
           <div dangerouslySetInnerHTML={{ __html: html }} />
+          <hr />
           <CandidateHomeBenefitCard />
           <button className="bg-green-300">Candidate</button>
         </div>

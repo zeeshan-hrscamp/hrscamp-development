@@ -56,6 +56,7 @@ const ContactForm = () => {
             />
             <div dangerouslySetInnerHTML={{ __html: html }} />
           </div>
+          <hr />
           <div>
             <GatsbyImage
               image={getImage(frontmatter.email_image)}
@@ -67,6 +68,7 @@ const ContactForm = () => {
               hello@hrscamp.com
             </div>
           </div>
+          <hr />
 
           {/* Card Section */}
           <div>

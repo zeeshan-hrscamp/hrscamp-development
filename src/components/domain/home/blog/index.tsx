@@ -70,6 +70,7 @@ const Blog = () => {
             alt={frontmatter.blog_image_title}
           />
           <div dangerouslySetInnerHTML={{ __html: html }} />
+          <hr />
           <BlogCard />
           <button className="bg-green-300">Blogs</button>
         </div>

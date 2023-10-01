@@ -45,9 +45,11 @@ const Model = () => {
             alt={frontmatter.model_image_title}
           />
           <div dangerouslySetInnerHTML={{ __html: html }} />
+          <hr />
           <div className="basis-1/2">
             <RPO />
           </div>
+          <hr />
           <div className="basis-1/2">
             <RO />
           </div>

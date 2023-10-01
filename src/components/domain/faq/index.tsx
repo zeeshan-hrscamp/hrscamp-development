@@ -22,6 +22,7 @@ const Faqs = () => {
   return (
     <>
       <FaqProfile />
+      <hr />
       {data.allMarkdownRemark.nodes.map((node) => (
         <div>
           <p>

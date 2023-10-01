@@ -35,7 +35,7 @@ const Faq = () => {
     <>
       <div className="flex flex-row">
         <div className="flex flex-col basis-1/2 grid content-center">
-          <h2 className="text-5xl text-green-600 ">
+          <h2 className="text-5xl text-green-600">
             {frontmatter.section_title}
           </h2>
         </div>
@@ -45,6 +45,7 @@ const Faq = () => {
             alt={frontmatter.faq_image_title}
           />
           <div dangerouslySetInnerHTML={{ __html: html }} />
+          <hr />
           <div>
             <p>{frontmatter.faq_1}</p>
             <p>{frontmatter.ans_1}</p>

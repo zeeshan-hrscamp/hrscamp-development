@@ -43,6 +43,7 @@ const Service = () => {
             alt={frontmatter.service_image_title}
           />
           <div dangerouslySetInnerHTML={{ __html: html }} />
+          <hr />
           <ServiceCard />
           <button className="bg-green-300">Services</button>
         </div>

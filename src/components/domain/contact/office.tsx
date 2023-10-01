@@ -44,6 +44,7 @@ const Office = () => {
             alt={frontmatter.office_profile_image_name}
           />
           <div dangerouslySetInnerHTML={{ __html: html }} />
+          <hr />
           <OfficeCard />
         </div>
       </div>

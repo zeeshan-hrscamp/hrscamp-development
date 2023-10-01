@@ -5,7 +5,7 @@ section_title: "Vision"
 no: "2"
 ---
 
-(HRBS)
+<!-- (HRBS)
 
 To be the place where people can go when they require Management Solutions
 
@@ -23,4 +23,4 @@ Ultimately, we believe that by fulfilling our vision, we can make a meaningful c
 - Paramount and Hassle-Free Services
 - Customer ease and Satisfaction
 - Ensure Lucidity and Candor
-- Establishing Better Coordination and Customer Relationship
+- Establishing Better Coordination and Customer Relationship -->
