@@ -1,7 +1,7 @@
 import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-
+// import { FcDown } from "react-icons/fc";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const RecruitmentServiceBenefitCard = () => {
@@ -42,12 +42,32 @@ const RecruitmentServiceBenefitCard = () => {
               image={getImage(benefit.frontmatter.service_benefit_icon)}
               alt={benefit.frontmatter.service_benefit_icon_title}
             />
-            <div className="flex justify-center">
-              <h5>{benefit.frontmatter.section_title}</h5>
-            </div>
           </div>
-          <div className="grid content-center basis-3/4">
-            <div dangerouslySetInnerHTML={{ __html: benefit.html }} />
+          <div className="basis-3/4">
+            <div className="flex justify-center">
+              <h5 className="text-green-300 hover:text-blue-500 hover:font-bold transition-colors duration-300">
+                {benefit.frontmatter.section_title}
+              </h5>
+            </div>
+            <div
+              className="text-base"
+              style={{
+                color: "white",
+                marginTop: "1rem",
+                paddingRight: "1rem",
+              }}
+            >
+              <div
+                className="hover:text-green-500 hover:font-bold transition-colors duration-300"
+                dangerouslySetInnerHTML={{ __html: benefit.html }}
+              />
+            </div>
+            <div className="flex justify-center mb-4">
+              {/* <FcDown
+                size={30}
+                className="hover:text-green-500 transition-colors duration-300"
+              /> */}
+            </div>
           </div>
         </div>
       ))}

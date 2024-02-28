@@ -36,18 +36,23 @@ const RecruitmentStepCard = () => {
   return (
     <>
       {data.allMarkdownRemark.nodes.map((node) => (
-        <div className="flex flex-row">
+        <div className="flex flex-row bg-white">
           <div className="flex flex-col grid content-center basis-1/4">
             <GatsbyImage
               image={getImage(node.frontmatter.step_image)}
               alt={node.frontmatter.step_name}
             />
-            <div className="flex justify-center">
-              <h4>{node.frontmatter.step_name}</h4>
-            </div>
           </div>
-          <div className="grid content-center basis-3/4">
-            <div dangerouslySetInnerHTML={{ __html: node.html }} />
+          <div className="flex flex-col w-[25rem] gap-2">
+            <div className="flex justify-center">
+              <h4 className="text-black">{node.frontmatter.step_name}</h4>
+            </div>
+            <div className="grid content-center basis-3/4 ">
+              <div
+                className="text-gray-600"
+                dangerouslySetInnerHTML={{ __html: node.html }}
+              />
+            </div>
           </div>
         </div>
       ))}

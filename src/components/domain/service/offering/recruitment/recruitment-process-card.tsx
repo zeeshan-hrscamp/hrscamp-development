@@ -35,12 +35,22 @@ const RecruitmentProcessCard = () => {
   return (
     <>
       <div>
-        <h2 className="text-4xl text-green-600">How It Works</h2>
+        <h2 className="text-5xl text-white text-green-500 hover:text-green-500 hover:font-bold transition-colors duration-300">
+          How It Works
+        </h2>
         <GatsbyImage
+          style={{
+            gridArea: "1/1",
+            height: "50vh",
+            marginTop: "2rem",
+          }}
           image={getImage(frontmatter.process_image)}
           alt={frontmatter.section_title}
         />
-        <div dangerouslySetInnerHTML={{ __html: html }} />
+        <div
+          className="text-white mt-4 text-lg hover:text-green-500 hover:font-bold transition-colors duration-300"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
         <RecruitmentStepCard />
       </div>
     </>

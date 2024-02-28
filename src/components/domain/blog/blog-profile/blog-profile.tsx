@@ -30,18 +30,26 @@ const BlogProfile = () => {
 
   return (
     <>
-      <div className="flex flex-row">
-        <div className="flex flex-col basis-1/2 grid content-center">
-          <h2 className="text-5xl text-green-600 ">
+      <div className="flex flex-col sm:flex-row">
+        <div className="flex flex-col sm:basis-1/2 grid content-center">
+          <div className="text-50 sm:text-[4rem] leading-[78%] flex relative  js-t-lines text-white ml-10 p-2">
             {frontmatter.section_title}
-          </h2>
+          </div>
         </div>
         <div className="flex flex-col basis-1/2">
           <GatsbyImage
+            style={{
+              gridArea: "1/1",
+              height: "50vh",
+              marginTop: "5rem",
+            }}
             image={getImage(frontmatter.blog_profile_image)}
             alt={frontmatter.blog_profile_image_name}
           />
-          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <div
+            className="text-white mt-[3rem] mb-[2rem] text-lg hover:text-green-500 hover:font-bold transition-colors duration-300"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
         </div>
       </div>
     </>

@@ -1,7 +1,7 @@
-import * as React from "react";
-import { useStaticQuery, type HeadFC, type PageProps, graphql } from "gatsby";
+import React, { useState } from "react";
+import { useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-
+import EmailBackground from "../../../images/Email.jpg";
 const ContactForm = () => {
   const data = useStaticQuery(graphql`
     query ContactFormProfileQuery {
@@ -19,18 +19,6 @@ const ContactForm = () => {
             }
           }
           contact_form_profile_image_name
-          email_image {
-            childImageSharp {
-              gatsbyImageData(quality: 99, layout: FULL_WIDTH)
-            }
-          }
-          email_image_name
-          contact_form_image {
-            childImageSharp {
-              gatsbyImageData(quality: 99, layout: FULL_WIDTH)
-            }
-          }
-          contact_form_image_name
         }
         html
       }
@@ -40,166 +28,132 @@ const ContactForm = () => {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
 
+  const [step, setStep] = useState(0); // Initialize the step state
+  const [formValues, setFormValues] = useState({
+    floating_first_name: "",
+    floating_email: "",
+    floating_phone: "",
+    floating_subject: "",
+    floating_message: "",
+  });
+
+  const steps = [
+    { label: "What's your name ?", name: "floating_first_name" },
+    { label: "What's your email ?", name: "floating_email" },
+    { label: "What's your phone number ?", name: "floating_phone" },
+    { label: "Subject", name: "floating_subject" },
+    { label: "Message", name: "floating_message" },
+  ];
+
+  const handleChangeStep = (direction) => {
+    if (direction === "next") {
+      setStep(step + 1);
+    } else {
+      setStep(step - 1);
+    }
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
   return (
     <>
-      <div className="flex flex-row">
+      <div
+        className="h-[25rem]"
+        style={{
+          backgroundImage: ` url(${EmailBackground})`, // Set the background image
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="flex justify-center mt-[5rem] pt-[5rem]">
+          <div className="p-2 text-green-500 bg-slate-600 rounded-2xl font-bold ">
+            {" "}
+            Contact Us
+          </div>
+        </div>
+
+        <div className="font-sans font-bold text-5xl text-white mt-8 flex justify-center">
+          <a
+            href="mailto:hello@hrscamp.com"
+            className="email-link hover:text-green-500"
+          >
+            hello@hrscamp.com
+          </a>
+        </div>
+      </div>
+
+      <div className="flex flex-row mt-[5rem]">
         <div className="flex flex-col basis-1/2 grid content-center">
           <h2 className="text-5xl text-green-600 ">
             {frontmatter.section_title}
           </h2>
         </div>
+
         <div className="flex flex-col basis-1/2">
           <div>
             <GatsbyImage
+              style={{
+                gridArea: "1/1",
+                height: "50vh",
+                marginTop: "5rem",
+              }}
               image={getImage(frontmatter.contact_form_profile_image)}
               alt={frontmatter.contact_form_profile_image_name}
             />
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-          </div>
-          <hr />
-          <div>
-            <GatsbyImage
-              image={getImage(frontmatter.email_image)}
-              alt={frontmatter.email_name}
+            <div
+              style={{
+                color: "white",
+                marginTop: "6rem",
+              }}
+              dangerouslySetInnerHTML={{ __html: html }}
             />
           </div>
-          <div className="flex justify-center">
-            <div className="font-sans text-5xl text-green-500">
-              hello@hrscamp.com
-            </div>
-          </div>
-          <hr />
+        </div>
+      </div>
+      <div className="mx-3 h-[50rem] ">
+        <form className="pt-[25rem]">
+          <div className="relative flex z-0 w-full mb-6 group">
+            <div className="relative z-0 w-full mb-6 group">
+              <input
+                type="text"
+                name={steps[step].name}
+                id={steps[step].name}
+                value={formValues[steps[step].name]}
+                className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                placeholder=" "
+                onChange={handleInputChange}
+                required
+              />
+              <label
+                htmlFor={steps[step].name}
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                {steps[step].label}
+              </label>
 
-          {/* Card Section */}
-          <div>
-            <div>
-              <GatsbyImage
-                image={getImage(frontmatter.contact_form_image)}
-                alt={frontmatter.contact_form_name}
+              <progress
+                value={(step + 1) * (100 / steps.length)} // Calculate the value dynamically
+                max="100"
+                className="block w-full bg-blue-500 h-[0.1rem]"
               />
             </div>
-            <h2 className="text-5xl text-green-600 ">Contact Form</h2>
+            <button
+              type="button"
+              className="text-white hover:text-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center  dark:focus:ring-blue-800"
+              onClick={() => handleChangeStep("next")}
+              disabled={step === steps.length - 1}
+            >
+              Next
+            </button>
           </div>
-          <div className="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-            {/* Card */}
-            <div className="bg-white rounded-xl shadow p-4 sm:p-7 dark:bg-slate-900">
-              <div className="mb-8">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Please share your query with us ......
-                </p>
-              </div>
-              <form>
-                <div className="grid md:grid-cols-2 md:gap-6">
-                  <div className="relative z-0 w-full mb-6 group">
-                    <input
-                      type="text"
-                      name="floating_first_name"
-                      id="floating_first_name"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                    />
-                    <label
-                      htmlFor="floating_first_name"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      First name
-                    </label>
-                  </div>
-                  <div className="relative z-0 w-full mb-6 group">
-                    <input
-                      type="text"
-                      name="floating_last_name"
-                      id="floating_last_name"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                    />
-                    <label
-                      htmlFor="floating_last_name"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Last name
-                    </label>
-                  </div>
-                </div>
-                <div className="relative z-0 w-full mb-6 group">
-                  <input
-                    id="floating_email"
-                    name="floating_email"
-                    type="email"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                    required
-                  />
-                  <label
-                    htmlFor="floating_email"
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Email address
-                  </label>
-                </div>
-                <div className="relative z-0 w-full mb-6 group">
-                  <input
-                    type="tel"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                    name="floating_phone"
-                    id="floating_phone"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                    required
-                  />
-                  <label
-                    htmlFor="floating_phone"
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Phone Number
-                  </label>
-                </div>
-                <div className="relative z-0 w-full mb-6 group">
-                  <input
-                    id="floating_subject"
-                    name="floating_subject"
-                    type="text"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                    required
-                  />
-                  <label
-                    htmlFor="floating_subject"
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Subject
-                  </label>
-                </div>
-
-                <div className="relative z-0 w-full mb-6 group">
-                  <textarea
-                    id="floating_message"
-                    name="floating_message"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                    required
-                  />
-                  <label
-                    htmlFor="floating_message"
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Message
-                  </label>
-                </div>
-                <div className="relative z-0 w-full mb-6 group">Consent</div>
-                <div className="relative z-0 w-full mb-6 group">Captcha</div>
-                <button
-                  type="submit"
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Submit
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     </>
   );

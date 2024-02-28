@@ -4,10 +4,10 @@ import ContactForm from "./contactForm";
 import Office from "./office";
 import ContactProfile from "./contact-profile";
 import SocialMediaProfile from "./social-media-profile";
-
+import LetsTalk from "../../base/letstalk";
 const Contact = () => {
   return (
-    <>
+    <div style={{ background: "#292536" }}>
       <ContactProfile />
       <hr />
       <Office />
@@ -15,7 +15,9 @@ const Contact = () => {
       <ContactForm />
       <hr />
       <SocialMediaProfile />
-    </>
+      <hr />
+      <LetsTalk />
+    </div>
   );
 };
 
