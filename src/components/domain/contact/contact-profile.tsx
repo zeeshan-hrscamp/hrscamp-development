@@ -96,7 +96,7 @@ const ContactProfile = () => {
     <>
       <div className="flex flex-col sm:flex-row">
         <div className="flex flex-col sm:basis-1/2 grid content-center">
-          <div className="text-50 sm:text-[4rem] leading-[78%] flex relative  js-t-lines text-white ml-10 p-2">
+          <div className="text-40 sm:text-[4rem] leading-[78%] flex relative  js-t-lines text-white ml-10 p-2">
             Get in Touch <br></br>
             <br></br> with HRS Camp!
           </div>
@@ -106,8 +106,8 @@ const ContactProfile = () => {
           <GatsbyImage
             style={{
               gridArea: "1/1",
-              height: "50vh",
-              marginTop: "5rem",
+              height: "40vh",
+              marginTop: "3rem",
             }}
             image={getImage(frontmatter.contact_profile_image)}
             alt={frontmatter.contact_profile_image_name}
@@ -115,7 +115,7 @@ const ContactProfile = () => {
           <div
             style={{
               color: "white",
-              marginTop: "6rem",
+              marginTop: "0.3rem",
             }}
             dangerouslySetInnerHTML={{ __html: html }}
           />

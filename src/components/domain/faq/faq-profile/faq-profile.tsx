@@ -37,7 +37,7 @@ const FaqProfile = () => {
     <>
       <div className="flex flex-row">
         <div className="flex flex-col basis-1/2 grid content-center">
-          <div className="text-50 sm:text-[4rem] leading-[78%] flex relative left-[-0.8rem] mb-15 js-t-lines text-white ml-10 p-2">
+          <div className="text-40 sm:text-[4rem] leading-[78%] flex relative left-[-0.8rem] mb-15 js-t-lines text-white ml-10 p-2">
             FAQs Demystified:<br></br>
             Your Top Questions <br></br>
             Answered
@@ -46,13 +46,13 @@ const FaqProfile = () => {
 
         <div className="flex flex-col basis-1/2 mr-4">
           <GatsbyImage
-            style={{ height: "60vh", marginTop: "4rem" }}
+            style={{ height: "45vh", marginTop: "3rem" }}
             image={getImage(frontmatter.faq_profile_image)}
             alt={frontmatter.faq_profile_image_name}
           />
           <div
             className="text-white"
-            style={{ marginTop: "4rem", marginBottom: "4rem" }}
+            style={{ marginTop: "1rem", marginBottom: "4rem" }}
             dangerouslySetInnerHTML={{ __html: html }}
           />
         </div>

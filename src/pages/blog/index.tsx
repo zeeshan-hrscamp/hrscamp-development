@@ -7,7 +7,7 @@ import BlogProfile from "../../components/domain/blog/blog-profile/blog-profile"
 
 const BlogPage = ({ data }) => {
   return (
-    <>
+    <div style={{ background: "#292536" }}>
       <Layout>
         <BlogProfile />
         <div className="flex flex-row">
@@ -16,7 +16,7 @@ const BlogPage = ({ data }) => {
           ))}
         </div>
       </Layout>
-    </>
+    </div>
   );
 };
 

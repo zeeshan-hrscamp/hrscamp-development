@@ -6,7 +6,7 @@ import ServiceProfile from "./service-profile/service-profile";
 const Services = () => {
   return (
     <>
-      <div>
+      <div style={{ background: "#292536" }}>
         <ServiceProfile />
         <hr />
         <Offerings />
