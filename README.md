@@ -53,3 +53,7 @@ Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
 - git remote add hrscamp-development https://github.com/zeeshan-hrscamp/hrscamp-development.git
 - git branch -M main
 - git push -u origin hrscamp-development
+
+## Commit Logs
+ 
+- 28 Feb, 2024
