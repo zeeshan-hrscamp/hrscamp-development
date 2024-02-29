@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faUser, faUsers,faInfoCircle, faTools, faBlog, faCogs,faUserTie, faHandshake, faQuestionCircle, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
+
 // import { CgMenuGridO } from "react-icons/cg";
 // import { FcAbout } from "react-icons/fc";
 // import { GiTeamIdea } from "react-icons/gi";
@@ -23,6 +27,8 @@ const Navbar = () => {
         onClick={toggleDropdown}
         className="p-1 border border-grey rounded-md bg-slate-200 hover:bg-slate-300 hover:opacity-70 transition-all duration-300"
       >
+        <FontAwesomeIcon icon={faBars} className="w-7 h-5" />
+       
         {/* <CgMenuGridO className="w-7 h-5" /> */}
       </button>
 
@@ -44,6 +50,7 @@ const Navbar = () => {
             >
               <span className="flex">
                 {/* <FcAbout className="mt-1 mr-2 mb-1" /> */}
+                <FontAwesomeIcon icon={faInfoCircle} className="mt-1 mr-2 mb-1" />
                 About
               </span>
             </Link>
@@ -56,6 +63,7 @@ const Navbar = () => {
             >
               <span className="flex">
                 {/* <GiTeamIdea className="mt-1 mr-2 mb-1" /> */}
+                <FontAwesomeIcon icon={faUsers} className="mt-1 mr-2 mb-1" />
                 Team
               </span>
             </Link>
@@ -67,6 +75,7 @@ const Navbar = () => {
               className="font-medium text-white hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500"
             >
               <span className="flex">
+              <FontAwesomeIcon icon={faUserTie} className="mt-1 mr-2 mb-1" />
                 {/* <RiTeamFill className="mt-1 mr-2 mb-1" /> */}
                 Client
               </span>
@@ -81,6 +90,7 @@ const Navbar = () => {
             >
               <span className="flex">
                 {/* <FaPerson className="mt-1 mr-2 mb-1" /> */}
+                <FontAwesomeIcon icon={faUser} className="mt-1 mr-2 mb-1" />
                 Candidate
               </span>
             </Link>
@@ -92,6 +102,8 @@ const Navbar = () => {
               to="/services"
             >
               <span className="flex">
+              <FontAwesomeIcon icon={faTools} className="mt-1 mr-2 mb-1" />
+                
                 {/* <GrServices className="mt-1 mr-2 mb-1" /> */}
                 Services
               </span>
@@ -103,7 +115,9 @@ const Navbar = () => {
               className="font-medium text-white hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500"
               to="/model"
             >
-              <span className="flex">
+              <span className="flex">  
+              <FontAwesomeIcon icon={faCogs} className="mt-1 mr-2 mb-1" />
+
                 {/* <MdModelTraining className="mt-1 mr-2 mb-1" /> */}
                 Model
               </span>
@@ -116,6 +130,7 @@ const Navbar = () => {
               to="/blog"
             >
               <span className="flex">
+              <FontAwesomeIcon icon={faBlog} className="mt-1 mr-2 mb-1" />
                 {/* <FaBlog className="mt-1 mr-2 mb-1" /> */}
                 Blog
               </span>
@@ -128,6 +143,7 @@ const Navbar = () => {
               to="/faqs"
             >
               <span className="flex">
+              <FontAwesomeIcon icon={faQuestionCircle} className="mt-1 mr-2 mb-1" />
                 {/* <FcFaq className="mt-1 mr-2 mb-1" /> */}
                 FAQs
               </span>
@@ -140,6 +156,7 @@ const Navbar = () => {
               to="/contact"
             >
               <span className="flex">
+              <FontAwesomeIcon icon={faEnvelope} className="mt-1 mr-2 mb-1" />
                 {/* <MdContacts className="mt-1 mr-2 mb-1" /> */}
                 Contact
               </span>

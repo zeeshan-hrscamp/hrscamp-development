@@ -49,7 +49,7 @@ const SocialMediaProfile = () => {
             style={{
               gridArea: "1/1",
               height: "50vh",
-              marginTop: "5rem",
+              marginTop: "3rem",
             }}
             image={getImage(frontmatter.social_media_profile_image)}
             alt={frontmatter.social_media_profile_image_name}
@@ -57,7 +57,7 @@ const SocialMediaProfile = () => {
           <div
             style={{
               color: "white",
-              marginTop: "6rem",
+              marginTop: "2rem",
             }}
             dangerouslySetInnerHTML={{ __html: html }}
           />

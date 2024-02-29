@@ -34,16 +34,24 @@ const Office = () => {
     <>
       <div className="flex flex-row">
         <div className="flex flex-col basis-1/2 grid content-center">
-          <h2 className="text-5xl text-green-600">
+          <h2 className="text-40 sm:text-[4rem] leading-[78%] flex relative  js-t-lines text-white ml-10 p-2">
             {frontmatter.section_title}
           </h2>
         </div>
         <div className="flex flex-col basis-1/2">
           <GatsbyImage
+           style={{
+            gridArea: "1/1",
+            height: "40vh",
+            marginTop: "3rem",
+          }}
             image={getImage(frontmatter.office_profile_image)}
             alt={frontmatter.office_profile_image_name}
           />
-          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <div  style={{
+              color: "white",
+              marginTop: "0.3rem",
+            }} dangerouslySetInnerHTML={{ __html: html }} />
           <hr />
           <OfficeCard />
         </div>

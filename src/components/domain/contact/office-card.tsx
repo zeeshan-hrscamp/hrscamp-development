@@ -60,8 +60,11 @@ const OfficeCard = () => {
               <div className="relative w-full mt-4 sm:w-[25rem] h-[25rem] sm:h-[25rem] rounded-[1rem] border-[0.5rem] border-solid border-black overflow-hidden group">
                 <GatsbyImage
                   className="slider-workshops__image w-full h-full object-fit"
-                  width="200"
-                  height="200"
+                  style={{
+                    gridArea: "1/1",
+                    height: "40vh",
+                    marginTop: "3rem",
+                  }}
                   image={getImage(office.frontmatter.office_image)}
                   alt={office.frontmatter.office_image_alt}
                 />

@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 import * as React from "react";
 import FaqProfile from "./faq-profile/faq-profile";
-
+import LetsTalk from "../../base/letstalk";
 const FaqAccordion = ({ question, answer }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -69,6 +69,7 @@ const Faqs = () => {
           answer={node.frontmatter.answer}
         />
       ))}
+      <LetsTalk/>
     </div>
   );
 };

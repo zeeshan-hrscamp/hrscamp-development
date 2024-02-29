@@ -1,110 +1,21 @@
-import * as React from "react";
-import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import React from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTwitterSquare,
-  faSquareFacebook,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
-
-const SocialMediaProfile = () => {
-  const data = useStaticQuery(graphql`
-    query SocialMediaProfileQuery {
-      markdownRemark(
-        frontmatter: {
-          domain: { eq: "contact" }
-          domain_section: { eq: "social-media" }
-        }
-      ) {
-        frontmatter {
-          section_title
-          social_media_profile_image {
-            childImageSharp {
-              gatsbyImageData(quality: 90, width: 300, layout: CONSTRAINED)
-            }
-          }
-          social_media_profile_image_name
-        }
-        html
-      }
-    }
-  `);
-
-  const { markdownRemark } = data;
-  const { frontmatter, html } = markdownRemark;
-
+const LetsTalk = () => {
   return (
-    <>
-      <div className="flex flex-col sm:flex-row">
-        <div className="flex flex-col sm:basis-1/2 grid content-center">
-          <div className="text-50 sm:text-[4rem] leading-[78%] flex relative  js-t-lines text-white ml-10 p-2">
-            Stay Connected , <br></br>
-            <br></br> Stay Informed
-          </div>
-        </div>
-        <div className="flex flex-col basis-1/2">
-          <GatsbyImage
-            style={{
-              gridArea: "1/1",
-              height: "50vh",
-              marginTop: "5rem",
-            }}
-            image={getImage(frontmatter.social_media_profile_image)}
-            alt={frontmatter.social_media_profile_image_name}
-          />
-          <div
-            style={{
-              color: "white",
-              marginTop: "6rem",
-            }}
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-          <div>
-            <div className="flex gap-2 mb-7">
-              {/* <!-- Facebook --> */}
-              <div className=" bg-[#989aa0] p-2 rounded-xl">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-7 w-7"
-                  fill="currentColor"
-                  style={{ color: "#1877f2", cursor: "pointer" }}
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
-                </svg>
-              </div>
-              {/* <!-- Twitter --> */}
-              <div className=" p-2 bg-[#989aa0] rounded-xl">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-7 w-7"
-                  fill="currentColor"
-                  style={{ color: "#1da1f2", cursor: "pointer" }}
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                </svg>
-              </div>
-              {/* <!-- Linkedin --> */}
-              <div className="p-2 bg-[#989aa0] rounded-xl">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-7 w-7"
-                  fill="currentColor"
-                  style={{ color: "#0077b5", cursor: "pointer" }}
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <div className="bg-white pl-2 pr-2 pt-[10rem] pb-[13rem] ">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 1403 431"
+        className="w-full h-auto"
+      >
+        <path
+          d="M0.664001 0.499966V431H124.074V394.264H46.01V0.499966H0.664001ZM142.841 0.499966V431H270.843V394.264H187.613V229.526H269.695V193.364H187.613V36.662H270.269V0.499966H142.841ZM281.332 0.499966V35.514H336.436V431H381.208V35.514H435.738V0.499966H281.332ZM470.734 104.968C482.788 104.968 491.972 97.506 491.972 77.99V0.499966H448.348V56.752H468.438V65.936C468.438 80.86 464.42 84.878 451.792 84.878H444.33V104.968H470.734ZM608.467 0.499966H573.453C536.143 0.499966 512.609 17.72 512.609 72.25V115.874C512.609 168.682 530.403 183.606 555.085 206.566C568.861 219.194 580.915 230.1 595.265 243.876C616.503 264.54 622.243 276.02 622.243 309.312V352.362C622.243 382.784 615.929 401.726 588.951 401.726C563.695 401.726 555.659 382.784 555.659 354.084V280.612H510.313V357.528C510.313 413.206 534.995 431 570.583 431H604.449C642.907 431 665.293 413.206 666.441 354.084V295.536C666.441 244.45 649.795 231.248 625.687 207.714C612.485 195.086 599.857 183.606 585.507 170.404C563.121 149.74 556.807 137.686 556.807 104.394V77.416C556.807 46.994 563.121 29.774 590.099 29.774C616.503 29.774 622.243 48.716 622.243 77.416V134.242H667.015V73.972C667.015 18.294 644.055 0.499966 608.467 0.499966ZM755.869 0.499966V35.514H810.973V431H855.745V35.514H910.275V0.499966H755.869ZM942.952 0.499966L889.57 431H929.75L944.1 316.2H1015.28L1029.63 431H1074.4L1018.72 0.499966H942.952ZM948.692 278.89L980.262 30.348L1010.68 278.89H948.692ZM1090.43 0.499966V431H1213.84V394.264H1135.78V0.499966H1090.43ZM1355.45 431H1402.52L1319.86 204.844L1400.22 0.499966H1356.02L1277.38 201.4V0.499966H1232.61V431H1277.38V224.934L1355.45 431Z"
+          className="fill-black"
+        ></path>
+      </svg>
+    </div>
   );
 };
 
-export default SocialMediaProfile;
+export default LetsTalk;
